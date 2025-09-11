@@ -1,0 +1,2236 @@
+fileFormatVersion: 2
+guid: 1a7a4bc234b4bc74b9b9da3fc7beb930
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 596749772019961256
+    second: SoundIconPack_0
+  - first:
+      213: 3372837470932586385
+    second: SoundIconPack_1
+  - first:
+      213: 8542297205961044842
+    second: SoundIconPack_2
+  - first:
+      213: 2756748498882419625
+    second: SoundIconPack_3
+  - first:
+      213: 1154599290316585033
+    second: SoundIconPack_4
+  - first:
+      213: 2706891509569647263
+    second: SoundIconPack_5
+  - first:
+      213: -6270311261305869868
+    second: SoundIconPack_6
+  - first:
+      213: 1318029349108868686
+    second: SoundIconPack_7
+  - first:
+      213: 2756147423047104636
+    second: SoundIconPack_8
+  - first:
+      213: -2239715880463985313
+    second: SoundIconPack_9
+  - first:
+      213: -3543426684594825125
+    second: SoundIconPack_10
+  - first:
+      213: -5005025158886499506
+    second: SoundIconPack_11
+  - first:
+      213: 8836815892766162341
+    second: SoundIconPack_12
+  - first:
+      213: -3860149618817243901
+    second: SoundIconPack_13
+  - first:
+      213: 2541406416505614756
+    second: SoundIconPack_14
+  - first:
+      213: 7548973454764224074
+    second: SoundIconPack_15
+  - first:
+      213: 1623442807610827137
+    second: SoundIconPack_16
+  - first:
+      213: -8034921925524251836
+    second: SoundIconPack_17
+  - first:
+      213: 4365652453356391540
+    second: SoundIconPack_18
+  - first:
+      213: 179864821679656722
+    second: SoundIconPack_19
+  - first:
+      213: -1591092472213429232
+    second: SoundIconPack_20
+  - first:
+      213: 3958763587672724615
+    second: SoundIconPack_21
+  - first:
+      213: -1208064943908718813
+    second: SoundIconPack_22
+  - first:
+      213: 4277707082698928838
+    second: SoundIconPack_23
+  - first:
+      213: -7358418259207107883
+    second: SoundIconPack_24
+  - first:
+      213: 2161058214120683629
+    second: SoundIconPack_25
+  - first:
+      213: -3165361835676733804
+    second: SoundIconPack_26
+  - first:
+      213: 8561971182797425591
+    second: SoundIconPack_27
+  - first:
+      213: 7354634676006808760
+    second: SoundIconPack_28
+  - first:
+      213: -1744095029189136701
+    second: SoundIconPack_29
+  - first:
+      213: -3506338543482643042
+    second: SoundIconPack_30
+  - first:
+      213: -8476204145814646801
+    second: SoundIconPack_31
+  - first:
+      213: 3223087496652256624
+    second: SoundIconPack_32
+  - first:
+      213: -8319523212416962656
+    second: SoundIconPack_33
+  - first:
+      213: -4013137243866740881
+    second: SoundIconPack_34
+  - first:
+      213: 4767223795542933332
+    second: SoundIconPack_35
+  - first:
+      213: -8035848582866402069
+    second: SoundIconPack_36
+  - first:
+      213: -8264500593171812638
+    second: SoundIconPack_37
+  - first:
+      213: 1877800697702490858
+    second: SoundIconPack_38
+  - first:
+      213: 8379440200062158867
+    second: SoundIconPack_39
+  - first:
+      213: 6853848848808897840
+    second: SoundIconPack_40
+  - first:
+      213: -6904382575288088854
+    second: SoundIconPack_41
+  - first:
+      213: -5131863328873389643
+    second: SoundIconPack_42
+  - first:
+      213: 1634202264381068866
+    second: SoundIconPack_43
+  - first:
+      213: -1458537140579737760
+    second: SoundIconPack_44
+  - first:
+      213: -5262595835152311977
+    second: SoundIconPack_45
+  - first:
+      213: -6598884798301913282
+    second: SoundIconPack_46
+  - first:
+      213: -1363110592288331662
+    second: SoundIconPack_47
+  - first:
+      213: -1024789404346927248
+    second: SoundIconPack_48
+  - first:
+      213: 1244294532764895173
+    second: SoundIconPack_49
+  - first:
+      213: -1099995124244497727
+    second: SoundIconPack_50
+  - first:
+      213: -8928478230409035799
+    second: SoundIconPack_51
+  - first:
+      213: 418869404034128023
+    second: SoundIconPack_52
+  - first:
+      213: -8384454511073795458
+    second: SoundIconPack_53
+  - first:
+      213: -6631526782888721043
+    second: SoundIconPack_54
+  - first:
+      213: -2006276778453120376
+    second: SoundIconPack_55
+  - first:
+      213: -6915576599084966925
+    second: SoundIconPack_56
+  - first:
+      213: 7626783902632557082
+    second: SoundIconPack_57
+  - first:
+      213: -4837339211875760194
+    second: SoundIconPack_58
+  - first:
+      213: 6044011894855980323
+    second: SoundIconPack_59
+  - first:
+      213: 2414300245565909690
+    second: SoundIconPack_60
+  - first:
+      213: -5948147642635375324
+    second: SoundIconPack_61
+  - first:
+      213: 3350337902754330144
+    second: SoundIconPack_62
+  - first:
+      213: 9013128365997891065
+    second: SoundIconPack_63
+  - first:
+      213: -4885266688623733092
+    second: SoundIconPack_64
+  - first:
+      213: -5694674114505296380
+    second: SoundIconPack_65
+  - first:
+      213: -7431866518806144434
+    second: SoundIconPack_66
+  - first:
+      213: 3446489586567090335
+    second: SoundIconPack_67
+  - first:
+      213: 3589924694170496894
+    second: SoundIconPack_68
+  - first:
+      213: -6209900073746539861
+    second: SoundIconPack_69
+  - first:
+      213: -6154112513123007140
+    second: SoundIconPack_70
+  - first:
+      213: -6653816997260340786
+    second: SoundIconPack_71
+  - first:
+      213: -7192822226612017224
+    second: SoundIconPack_72
+  - first:
+      213: -6858786414201073013
+    second: SoundIconPack_73
+  - first:
+      213: -8452118304688708783
+    second: SoundIconPack_74
+  - first:
+      213: -5797698359570155970
+    second: SoundIconPack_75
+  - first:
+      213: -6084682368265244975
+    second: SoundIconPack_76
+  - first:
+      213: 941368384983306815
+    second: SoundIconPack_77
+  - first:
+      213: 2822018347294344173
+    second: SoundIconPack_78
+  - first:
+      213: -923604378889851413
+    second: SoundIconPack_79
+  - first:
+      213: -1723791759174943605
+    second: SoundIconPack_80
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SoundIconPack_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 586
+        width: 45
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ad8b0581c4184800800000000000000
+      internalID: 596749772019961256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_1
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 585
+        width: 45
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19f401c4fc9bece20800000000000000
+      internalID: 3372837470932586385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_2
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 621
+        width: 19
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a63be1fbc065c8670800000000000000
+      internalID: 8542297205961044842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_3
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 614
+        width: 19
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ab5af26720f14620800000000000000
+      internalID: 2756748498882419625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_4
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 586
+        width: 39
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 948fc3defe5f50010800000000000000
+      internalID: 1154599290316585033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_5
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 590
+        width: 55
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f927b697c7fc09520800000000000000
+      internalID: 2706891509569647263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_6
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 586
+        width: 55
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d96bbe11216bf8a0800000000000000
+      internalID: -6270311261305869868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_7
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 586
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e466c25b5b49a4210800000000000000
+      internalID: 1318029349108868686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 502
+        width: 28
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c78b4538a7dcf3620800000000000000
+      internalID: 2756147423047104636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_9
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 527
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f559423f54eeae0e0800000000000000
+      internalID: -2239715880463985313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_10
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 508
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b58d519443833dec0800000000000000
+      internalID: -3543426684594825125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_11
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 505
+        width: 55
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4b5da0c2249a8ab0800000000000000
+      internalID: -5005025158886499506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_12
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 503
+        width: 56
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ad7ad92c3da2aa70800000000000000
+      internalID: 8836815892766162341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_13
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 502
+        width: 55
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 305e986af5efd6ac0800000000000000
+      internalID: -3860149618817243901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_14
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 502
+        width: 42
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a137bdbba3e44320800000000000000
+      internalID: 2541406416505614756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_15
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 502
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4e23166c5753c860800000000000000
+      internalID: 7548973454764224074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_16
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 418
+        width: 17
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1816ec4d1a0a78610800000000000000
+      internalID: 1623442807610827137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_17
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 418
+        width: 16
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44b112f54193e7090800000000000000
+      internalID: -8034921925524251836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_18
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 418
+        width: 16
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47cce1fa6c9e59c30800000000000000
+      internalID: 4365652453356391540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_19
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 418
+        width: 55
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21f0ec33a120f7200800000000000000
+      internalID: 179864821679656722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_20
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 418
+        width: 56
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 014abe493dd4be9e0800000000000000
+      internalID: -1591092472213429232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_21
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 421
+        width: 55
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 784dbf0328a50f630800000000000000
+      internalID: 3958763587672724615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_22
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 460
+        width: 43
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 327f7b885571c3fe0800000000000000
+      internalID: -1208064943908718813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_23
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 425
+        width: 55
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c2317d6de77d5b30800000000000000
+      internalID: 4277707082698928838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_24
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 453
+        width: 34
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5da463f6495a1e990800000000000000
+      internalID: -7358418259207107883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_25
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 439
+        width: 19
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d687a97fefe9dfd10800000000000000
+      internalID: 2161058214120683629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_26
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 453
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49ee8e66e206214d0800000000000000
+      internalID: -3165361835676733804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_27
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 445
+        width: 15
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bb85cf6d6b32d670800000000000000
+      internalID: 8561971182797425591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_28
+      rect:
+        serializedVersion: 2
+        x: 426
+        y: 426
+        width: 20
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bce7247549e01660800000000000000
+      internalID: 7354634676006808760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_29
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 446
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ce28a2cfcabbc7e0800000000000000
+      internalID: -1744095029189136701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_30
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 437
+        width: 14
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9dd47d0cabf65fc0800000000000000
+      internalID: -3506338543482643042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_31
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 437
+        width: 13
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fef460dfc397e5a80800000000000000
+      internalID: -8476204145814646801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_32
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 429
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 075f5f56005babc20800000000000000
+      internalID: 3223087496652256624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_33
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 429
+        width: 33
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0af254f87bd1b8c80800000000000000
+      internalID: -8319523212416962656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_34
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 334
+        width: 54
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f67ce6070f87e48c0800000000000000
+      internalID: -4013137243866740881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_35
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 334
+        width: 55
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45f3022c8c4982240800000000000000
+      internalID: 4767223795542933332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_36
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 334
+        width: 45
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be40c652a4eea7090800000000000000
+      internalID: -8035848582866402069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_37
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 347
+        width: 29
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ee2df96f789e4d80800000000000000
+      internalID: -8264500593171812638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_38
+      rect:
+        serializedVersion: 2
+        x: 347
+        y: 347
+        width: 29
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae2a98919c94f0a10800000000000000
+      internalID: 1877800697702490858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_39
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 363
+        width: 20
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 318455d3770c94470800000000000000
+      internalID: 8379440200062158867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_40
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 334
+        width: 54
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03d6979f633cd1f50800000000000000
+      internalID: 6853848848808897840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_41
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 334
+        width: 39
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae68e86f0a4be20a0800000000000000
+      internalID: -6904382575288088854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_42
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 334
+        width: 38
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b1e5aefd75f7c8b0800000000000000
+      internalID: -5131863328873389643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_43
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 251
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24692931d4adda610800000000000000
+      internalID: 1634202264381068866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_44
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 263
+        width: 29
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06fd704c23c32cbe0800000000000000
+      internalID: -1458537140579737760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_45
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 263
+        width: 29
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 759db4968f087f6b0800000000000000
+      internalID: -5262595835152311977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_46
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 276
+        width: 26
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3f3d730d3d0c64a0800000000000000
+      internalID: -6598884798301913282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_47
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 268
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 278e41d6322451de0800000000000000
+      internalID: -1363110592288331662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_48
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 263
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0773150677737c1f0800000000000000
+      internalID: -1024789404346927248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_49
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 254
+        width: 56
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c78965f84f944110800000000000000
+      internalID: 1244294532764895173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_50
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 276
+        width: 22
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cabeb433480cb0f0800000000000000
+      internalID: -1099995124244497727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_51
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 251
+        width: 46
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ef39a3ca5ca71480800000000000000
+      internalID: -8928478230409035799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_52
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 251
+        width: 39
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 798dbb2f08f10d500800000000000000
+      internalID: 418869404034128023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_53
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 251
+        width: 38
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7266008b0f64ab80800000000000000
+      internalID: -8384454511073795458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_54
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 251
+        width: 39
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d65cd6bb68518f3a0800000000000000
+      internalID: -6631526782888721043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_55
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 167
+        width: 54
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88acf2356e54824e0800000000000000
+      internalID: -2006276778453120376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_56
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 167
+        width: 55
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3fb598239bfe600a0800000000000000
+      internalID: -6915576599084966925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_57
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 167
+        width: 56
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1ab41f0d87c7d960800000000000000
+      internalID: 7626783902632557082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_58
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 167
+        width: 55
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb7c31abd915edcb0800000000000000
+      internalID: -4837339211875760194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_59
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 167
+        width: 42
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 325502bbbc4a0e350800000000000000
+      internalID: 6044011894855980323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_60
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 167
+        width: 43
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aba28162841518120800000000000000
+      internalID: 2414300245565909690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_61
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 186
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42d2421db3fe37da0800000000000000
+      internalID: -5948147642635375324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_62
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 83
+        width: 42
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 026f23b529ace7e20800000000000000
+      internalID: 3350337902754330144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_63
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 98
+        width: 22
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fd1d4ace70151d70800000000000000
+      internalID: 9013128365997891065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_64
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 83
+        width: 55
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c96988774db043cb0800000000000000
+      internalID: -4885266688623733092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_65
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 83
+        width: 42
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 406bc45801478f0b0800000000000000
+      internalID: -5694674114505296380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_66
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 101
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4ad070e6c4bcd890800000000000000
+      internalID: -7431866518806144434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_67
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 83
+        width: 42
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f901a69c40464df20800000000000000
+      internalID: 3446489586567090335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_68
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 107
+        width: 20
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7f6f663d79f1d130800000000000000
+      internalID: 3589924694170496894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_69
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 83
+        width: 55
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: baa5aadc8c002d9a0800000000000000
+      internalID: -6209900073746539861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_70
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 83
+        width: 24
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5544837643389aa0800000000000000
+      internalID: -6154112513123007140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_71
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 83
+        width: 24
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec157d5c1b4e8a3a0800000000000000
+      internalID: -6653816997260340786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_72
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 0
+        width: 39
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b7a14a4b46fd2c90800000000000000
+      internalID: -7192822226612017224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_73
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 0
+        width: 25
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b82154f7812b0d0a0800000000000000
+      internalID: -6858786414201073013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_74
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 11
+        width: 18
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 153e371ee2b04ba80800000000000000
+      internalID: -8452118304688708783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_75
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 6
+        width: 56
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e36b4fa3f007a8fa0800000000000000
+      internalID: -5797698359570155970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_76
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 0
+        width: 25
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1dea774cf9dde8ba0800000000000000
+      internalID: -6084682368265244975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_77
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 22
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3296bdfe89601d00800000000000000
+      internalID: 941368384983306815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_78
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 0
+        width: 25
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de34d143cb2d92720800000000000000
+      internalID: 2822018347294344173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_79
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 0
+        width: 55
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bed664bf5b2be23f0800000000000000
+      internalID: -923604378889851413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundIconPack_80
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 0
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8cb1af278cd318e0800000000000000
+      internalID: -1723791759174943605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      SoundIconPack_0: 596749772019961256
+      SoundIconPack_1: 3372837470932586385
+      SoundIconPack_10: -3543426684594825125
+      SoundIconPack_11: -5005025158886499506
+      SoundIconPack_12: 8836815892766162341
+      SoundIconPack_13: -3860149618817243901
+      SoundIconPack_14: 2541406416505614756
+      SoundIconPack_15: 7548973454764224074
+      SoundIconPack_16: 1623442807610827137
+      SoundIconPack_17: -8034921925524251836
+      SoundIconPack_18: 4365652453356391540
+      SoundIconPack_19: 179864821679656722
+      SoundIconPack_2: 8542297205961044842
+      SoundIconPack_20: -1591092472213429232
+      SoundIconPack_21: 3958763587672724615
+      SoundIconPack_22: -1208064943908718813
+      SoundIconPack_23: 4277707082698928838
+      SoundIconPack_24: -7358418259207107883
+      SoundIconPack_25: 2161058214120683629
+      SoundIconPack_26: -3165361835676733804
+      SoundIconPack_27: 8561971182797425591
+      SoundIconPack_28: 7354634676006808760
+      SoundIconPack_29: -1744095029189136701
+      SoundIconPack_3: 2756748498882419625
+      SoundIconPack_30: -3506338543482643042
+      SoundIconPack_31: -8476204145814646801
+      SoundIconPack_32: 3223087496652256624
+      SoundIconPack_33: -8319523212416962656
+      SoundIconPack_34: -4013137243866740881
+      SoundIconPack_35: 4767223795542933332
+      SoundIconPack_36: -8035848582866402069
+      SoundIconPack_37: -8264500593171812638
+      SoundIconPack_38: 1877800697702490858
+      SoundIconPack_39: 8379440200062158867
+      SoundIconPack_4: 1154599290316585033
+      SoundIconPack_40: 6853848848808897840
+      SoundIconPack_41: -6904382575288088854
+      SoundIconPack_42: -5131863328873389643
+      SoundIconPack_43: 1634202264381068866
+      SoundIconPack_44: -1458537140579737760
+      SoundIconPack_45: -5262595835152311977
+      SoundIconPack_46: -6598884798301913282
+      SoundIconPack_47: -1363110592288331662
+      SoundIconPack_48: -1024789404346927248
+      SoundIconPack_49: 1244294532764895173
+      SoundIconPack_5: 2706891509569647263
+      SoundIconPack_50: -1099995124244497727
+      SoundIconPack_51: -8928478230409035799
+      SoundIconPack_52: 418869404034128023
+      SoundIconPack_53: -8384454511073795458
+      SoundIconPack_54: -6631526782888721043
+      SoundIconPack_55: -2006276778453120376
+      SoundIconPack_56: -6915576599084966925
+      SoundIconPack_57: 7626783902632557082
+      SoundIconPack_58: -4837339211875760194
+      SoundIconPack_59: 6044011894855980323
+      SoundIconPack_6: -6270311261305869868
+      SoundIconPack_60: 2414300245565909690
+      SoundIconPack_61: -5948147642635375324
+      SoundIconPack_62: 3350337902754330144
+      SoundIconPack_63: 9013128365997891065
+      SoundIconPack_64: -4885266688623733092
+      SoundIconPack_65: -5694674114505296380
+      SoundIconPack_66: -7431866518806144434
+      SoundIconPack_67: 3446489586567090335
+      SoundIconPack_68: 3589924694170496894
+      SoundIconPack_69: -6209900073746539861
+      SoundIconPack_7: 1318029349108868686
+      SoundIconPack_70: -6154112513123007140
+      SoundIconPack_71: -6653816997260340786
+      SoundIconPack_72: -7192822226612017224
+      SoundIconPack_73: -6858786414201073013
+      SoundIconPack_74: -8452118304688708783
+      SoundIconPack_75: -5797698359570155970
+      SoundIconPack_76: -6084682368265244975
+      SoundIconPack_77: 941368384983306815
+      SoundIconPack_78: 2822018347294344173
+      SoundIconPack_79: -923604378889851413
+      SoundIconPack_8: 2756147423047104636
+      SoundIconPack_80: -1723791759174943605
+      SoundIconPack_9: -2239715880463985313
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
