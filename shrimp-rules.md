@@ -281,6 +281,12 @@ public class GameEvents : ScriptableObject
 - ❌ **Never use magic numbers** without constants
 - ❌ **Never create circular dependencies** between classes
 
+### Script Creation Prohibitions
+- ❌ **Never create Tester scripts** unless explicitly requested by user
+- ❌ **Never create Guide scripts** unless explicitly requested by user
+- ❌ **Never create Setup scripts** unless explicitly requested by user
+- ❌ **Focus only on main functionality scripts** when user requests new features
+
 ### Asset Prohibitions
 - ❌ **Never place scripts** outside Assets/@Scripts/
 - ❌ **Never place sprites** outside Assets/@Sprites/

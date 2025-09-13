@@ -6,20 +6,23 @@ using UnityEngine;
 public class CatAI : MonoBehaviour
 {
     [Header("AI 설정")]
-    [SerializeField] private float updateInterval = 0.1f; // AI 업데이트 간격
+    [SerializeField] private float updateInterval = 0.05f; // AI 업데이트 간격 (더 자주 업데이트)
     [SerializeField] private float decisionRadius = 2f; // 의사결정 반경
     [SerializeField] private float avoidanceRadius = 1.5f; // 회피 반경
+    [SerializeField] private float trackPointReachDistance = 4f; // 트랙 포인트 도달 거리
 
     [Header("참조")]
     [SerializeField] private Cat cat; // 고양이 컴포넌트
     [SerializeField] private CatMovement movement; // 이동 컴포넌트
     [SerializeField] private TrackManager trackManager; // 트랙 매니저
+    [SerializeField] private Collider2D catCollider; // 고양이 콜라이더
 
     [Header("AI 상태")]
     [SerializeField] private AIState currentState = AIState.Moving;
     [SerializeField] private Vector3 targetPosition; // 목표 위치
     [SerializeField] private float currentSpeed; // 현재 이동 속도
     [SerializeField] private Vector3 avoidanceDirection; // 회피 방향
+    [SerializeField] private int currentTrackPointIndex = 0; // 현재 목표 트랙 포인트 인덱스
 
     // AI 상태 열거형
     public enum AIState
@@ -27,7 +30,8 @@ public class CatAI : MonoBehaviour
         Moving,     // 이동 중
         Avoiding,   // 회피 중
         Overtaking, // 추월 중
-        Defending   // 방어 중
+        Defending,  // 방어 중
+        Recovery    // 회복 중 (체력이 0이 되어 정지)
     }
 
     // 공개 프로퍼티들
@@ -47,6 +51,7 @@ public class CatAI : MonoBehaviour
         cat = GetComponent<Cat>();
         movement = GetComponent<CatMovement>();
         trackManager = FindFirstObjectByType<TrackManager>();
+        catCollider = GetComponent<Collider2D>();
 
         if (cat == null)
         {
@@ -90,26 +95,68 @@ public class CatAI : MonoBehaviour
     {
         if (cat == null || trackManager == null) return;
 
-        // 1. 현재 위치에서 트랙 진행도 계산
-        float progress = trackManager.CalculateProgress(transform.position);
-        
-        // 2. 스탯 기반 속도 계산
+        // Recovery 상태 처리
+        if (currentState == AIState.Recovery)
+        {
+            HandleRecoveryState();
+            return;
+        }
+
+        // 1. 스탯 기반 속도 계산
         currentSpeed = CalculateMovementSpeed();
         
-        // 3. 목표 위치 결정
-        targetPosition = DetermineTargetPosition(progress);
+        // 2. 목표 위치 결정 (트랙 포인트 순서대로)
+        targetPosition = DetermineTargetPosition(); // progress 파라미터는 사용하지 않음
         
-        // 4. 장애물 회피 확인
+        // 3. 장애물 회피 확인
         Vector3 avoidance = CheckAvoidance();
         
-        // 5. 최종 이동 방향 결정
+        // 4. 최종 이동 방향 결정
         Vector3 finalDirection = CalculateFinalDirection(targetPosition, avoidance);
         
-        // 6. 이동 실행
+        // 5. 이동 실행
         if (movement != null)
         {
             movement.SetTargetDirection(finalDirection);
             movement.SetSpeed(currentSpeed);
+        }
+    }
+
+    /// <summary>
+    /// Recovery 상태를 처리합니다
+    /// </summary>
+    private void HandleRecoveryState()
+    {
+        if (movement != null)
+        {
+            // 완전히 정지
+            movement.SetTargetDirection(Vector3.zero);
+            movement.SetSpeed(0f);
+        }
+
+        // 콜라이더 비활성화
+        if (catCollider != null)
+        {
+            catCollider.enabled = false;
+        }
+
+        // 체력이 50% 이상 회복되면 Moving 상태로 전환
+        float healthPercentage = (float)cat.CurrentHealth / cat.CatStats.Health;
+        if (healthPercentage >= 0.5f)
+        {
+            currentState = AIState.Moving;
+            if (movement != null)
+            {
+                movement.ResetExhaustion();
+            }
+            
+            // 콜라이더 다시 활성화
+            if (catCollider != null)
+            {
+                catCollider.enabled = true;
+            }
+            
+            Debug.Log($"{cat.CatStats.CatName} 체력이 회복되어 다시 이동을 시작합니다!");
         }
     }
 
@@ -140,26 +187,46 @@ public class CatAI : MonoBehaviour
     }
 
     /// <summary>
-    /// 목표 위치를 결정합니다
+    /// 목표 위치를 결정합니다 (트랙 포인트 순서대로 방문)
     /// </summary>
-    /// <param name="currentProgress">현재 트랙 진행도</param>
+    /// <param name="currentProgress">사용하지 않음 (호환성을 위해 유지)</param>
     /// <returns>목표 위치</returns>
-    private Vector3 DetermineTargetPosition(float currentProgress)
+    private Vector3 DetermineTargetPosition()
     {
-        if (trackManager == null) return transform.position;
+        if (trackManager == null || trackManager.TrackPoints == null || trackManager.TrackPoints.Length == 0)
+        {
+            return transform.position;
+        }
 
-        // 다음 목표 진행도 계산 (속도에 따라 조절)
-        float speedFactor = currentSpeed / 10f; // 0.1 ~ 2.0
-        float nextProgress = currentProgress + (speedFactor * 0.01f); // 진행도 증가량
-        
-        // 진행도 제한
-        nextProgress = Mathf.Clamp01(nextProgress);
+        // 현재 목표 트랙 포인트 가져오기
+        TrackPoint targetTrackPoint = trackManager.TrackPoints[currentTrackPointIndex];
+        if (targetTrackPoint == null)
+        {
+            return transform.position;
+        }
 
-        // 원형 범위 내에서 랜덤 오프셋 추가
-        float randomOffset = Random.Range(-180f, 180f);
+        // 현재 목표 트랙 포인트에 도달했는지 확인
+        float distanceToTarget = Vector3.Distance(transform.position, targetTrackPoint.CenterPosition);
+        if (distanceToTarget <= trackPointReachDistance)
+        {
+            // 다음 트랙 포인트로 이동
+            currentTrackPointIndex = (currentTrackPointIndex + 1) % trackManager.TrackPoints.Length;
+            targetTrackPoint = trackManager.TrackPoints[currentTrackPointIndex];
+            
+            Debug.Log($"{gameObject.name}: 트랙 포인트 {currentTrackPointIndex}로 이동");
+        }
+
+        // 목표 트랙 포인트의 원형 범위 내에서 랜덤 위치 선택
+        float randomAngle = Random.Range(0f, 360f);
+        float randomRadius = Random.Range(0f, targetTrackPoint.TrackWidth / 2f);
         
-        // 목표 위치 계산
-        return trackManager.GetPositionAtProgress(nextProgress, randomOffset);
+        Vector3 randomOffset = new Vector3(
+            Mathf.Cos(randomAngle * Mathf.Deg2Rad) * randomRadius,
+            Mathf.Sin(randomAngle * Mathf.Deg2Rad) * randomRadius,
+            0f
+        );
+
+        return targetTrackPoint.CenterPosition + randomOffset;
     }
 
     /// <summary>
@@ -252,5 +319,10 @@ public class CatAI : MonoBehaviour
         Debug.Log($"목표 위치: {targetPosition}");
         Debug.Log($"현재 속도: {currentSpeed:F2}");
         Debug.Log($"회피 방향: {avoidanceDirection}");
+        Debug.Log($"현재 트랙 포인트 인덱스: {currentTrackPointIndex}");
+        if (trackManager != null && trackManager.TrackPoints != null && currentTrackPointIndex < trackManager.TrackPoints.Length)
+        {
+            Debug.Log($"목표 트랙 포인트: {trackManager.TrackPoints[currentTrackPointIndex].name}");
+        }
     }
 }

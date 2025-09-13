@@ -15,7 +15,7 @@ MonoBehaviour:
   catName: "\uAE30\uBCF8 \uACE0\uC591\uC774"
   catSprite: {fileID: 0}
   description: "\uACE0\uC591\uC774 \uC124\uBA85"
-  speed: 10
+  speed: 5
   acceleration: 10
   health: 50
   intelligence: 50

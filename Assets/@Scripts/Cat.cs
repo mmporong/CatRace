@@ -112,7 +112,7 @@ public class Cat : MonoBehaviour
                 currentAcceleration = Mathf.Clamp(value, 1f, 20f);
                 break;
             case StatType.Health:
-                currentHealth = Mathf.Clamp((int)value, 1, 100);
+                currentHealth = Mathf.Clamp((int)value, 0, 100);
                 break;
             case StatType.Intelligence:
                 currentIntelligence = Mathf.Clamp((int)value, 1, 100);
