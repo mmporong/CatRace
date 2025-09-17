@@ -71,7 +71,7 @@ public class CatMovement : MonoBehaviour
         }
 
         // 원래 이동 속도 저장
-        originalMoveSpeed = cat.CurrentSpeed;
+        ApplyStats();
     }
 
     /// <summary>
@@ -282,11 +282,16 @@ public class CatMovement : MonoBehaviour
         float speedMultiplier = cat.CurrentSpeed / 10f; // 0.1 ~ 2.0
         float baseSpeed = 5f * speedMultiplier; // 기본 속도 5에서 스탯에 따라 조절
 
+        // 힘 스탯에 따른 이동 속도 보너스 (최대 +50%)
+        float strengthMultiplier = cat.CurrentStrength / 100f; // 0.01 ~ 1.0
+        float strengthBonus = 1f + strengthMultiplier * 0.5f; // 1.0 ~ 1.5
+        float modifiedSpeed = baseSpeed * strengthBonus;
+
         // 체력이 고갈되지 않은 상태에서만 원래 속도 업데이트
         if (!isExhausted)
         {
-            moveSpeed = baseSpeed;
-            originalMoveSpeed = baseSpeed;
+            moveSpeed = modifiedSpeed;
+            originalMoveSpeed = modifiedSpeed;
         }
 
         // 가속도 스탯에 따른 회전 속도 조절
@@ -297,7 +302,7 @@ public class CatMovement : MonoBehaviour
         float healthMultiplier = cat.CatStats.Health / 100f; // 0.01 ~ 1.0
         maxVelocity = 15f * healthMultiplier;
 
-        Debug.Log($"{cat.CatStats.CatName} 스탯 적용: 속도({moveSpeed:F2}) 회전({rotationSpeed:F2}) 최대속도({maxVelocity:F2})");
+        Debug.Log($"{cat.CatStats.CatName} 스탯 적용: 이동속도({moveSpeed:F2}, 힘보너스 {strengthBonus:F2}) 회전({rotationSpeed:F2}) 최대속도({maxVelocity:F2})");
     }
 
     /// <summary>
@@ -310,6 +315,20 @@ public class CatMovement : MonoBehaviour
         if (rb != null)
         {
             rb.AddForce(direction.normalized * force, ForceMode2D.Force);
+        }
+    }
+
+    /// <summary>
+    /// 특정 방향으로 힘을 가합니다 (ForceMode2D 선택)
+    /// </summary>
+    /// <param name="direction">힘을 가할 방향</param>
+    /// <param name="force">힘의 크기</param>
+    /// <param name="mode">ForceMode2D</param>
+    public void AddForce(Vector3 direction, float force, ForceMode2D mode)
+    {
+        if (rb != null)
+        {
+            rb.AddForce(direction.normalized * force, mode);
         }
     }
 

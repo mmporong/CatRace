@@ -10,6 +10,9 @@ public class CatAI : MonoBehaviour
     [SerializeField] private float decisionRadius = 2f; // 의사결정 반경
     [SerializeField] private float avoidanceRadius = 1.5f; // 회피 반경
     [SerializeField] private float trackPointReachDistance = 4f; // 트랙 포인트 도달 거리
+    [SerializeField] private float overtakeRadius = 2f; // 추월 감지 반경
+    [SerializeField] private float overtakeAngle = 45f; // 전방 각도(도) 내 목표만 추월
+    [SerializeField] private float pushForcePerStrength = 0.2f; // 힘 차이당 밀어내는 힘 계수
 
     [Header("참조")]
     [SerializeField] private Cat cat; // 고양이 컴포넌트
@@ -108,17 +111,106 @@ public class CatAI : MonoBehaviour
         // 2. 목표 위치 결정 (트랙 포인트 순서대로)
         targetPosition = DetermineTargetPosition(); // progress 파라미터는 사용하지 않음
         
-        // 3. 장애물 회피 확인
+        // 3. 추월 대상 탐색 및 추월 벡터 계산
+        Collider2D overtakeTarget = FindWeakerCatAhead();
+        Vector3 overtakeVector = Vector3.zero;
+        if (overtakeTarget != null)
+        {
+            currentState = AIState.Overtaking;
+            overtakeVector = ComputeOvertakingVector(overtakeTarget);
+            ApplyOvertakingPush(overtakeTarget);
+        }
+
+        // 4. 장애물 회피 확인
         Vector3 avoidance = CheckAvoidance();
         
-        // 4. 최종 이동 방향 결정
-        Vector3 finalDirection = CalculateFinalDirection(targetPosition, avoidance);
+        // 5. 최종 이동 방향 결정 (추월 벡터 가중 적용)
+        Vector3 finalDirection = CalculateFinalDirection(targetPosition, avoidance + overtakeVector * 0.8f);
         
-        // 5. 이동 실행
+        // 6. 이동 실행
         if (movement != null)
         {
             movement.SetTargetDirection(finalDirection);
             movement.SetSpeed(currentSpeed);
+        }
+    }
+
+    /// <summary>
+    /// 전방에 있는 나보다 약한 고양이를 찾습니다
+    /// </summary>
+    private Collider2D FindWeakerCatAhead()
+    {
+        Collider2D[] nearbyCats = Physics2D.OverlapCircleAll(transform.position, overtakeRadius);
+        if (cat == null) return null;
+
+        // 현재 진행 방향 추정: 이동 컴포넌트 속도 우선, 없으면 목표 방향
+        Vector3 forward = Vector3.right;
+        if (movement != null && movement.CurrentVelocity.magnitude > 0.1f)
+        {
+            forward = movement.CurrentVelocity.normalized;
+        }
+        else if ((targetPosition - transform.position).sqrMagnitude > 0.01f)
+        {
+            forward = (targetPosition - transform.position).normalized;
+        }
+
+        Collider2D best = null;
+        float bestDist = float.MaxValue;
+        foreach (Collider2D col in nearbyCats)
+        {
+            if (col.gameObject == gameObject || !col.CompareTag("Cat")) continue;
+            Cat other = col.GetComponent<Cat>();
+            if (other == null) continue;
+
+            // 힘 비교: 내가 더 강해야 추월 시도
+            if (cat.CurrentStrength <= other.CurrentStrength) continue;
+
+            Vector3 toOther = (col.transform.position - transform.position);
+            float angle = Vector3.Angle(forward, toOther);
+            if (angle > overtakeAngle) continue; // 전방 콘 밖
+
+            float dist = toOther.sqrMagnitude;
+            if (dist < bestDist)
+            {
+                bestDist = dist;
+                best = col;
+            }
+        }
+        return best;
+    }
+
+    /// <summary>
+    /// 추월 시 측면으로 비껴가기 위한 벡터를 계산합니다
+    /// </summary>
+    private Vector3 ComputeOvertakingVector(Collider2D target)
+    {
+        Vector3 toTarget = (target.transform.position - transform.position).normalized;
+        // 전방 기준 좌/우 측면 벡터 선택 (트랙 상단/하단 편향 최소화 위해 부호 결정)
+        Vector3 side = Vector3.Cross(toTarget, Vector3.forward).normalized; // 화면 좌측 방향
+        // 타깃과 수직 방향으로 살짝 치우치게 함
+        return side * 0.6f - toTarget * 0.1f; // 약간 측면, 약간 전방 억제
+    }
+
+    /// <summary>
+    /// 상대를 측면으로 밀어내 추월을 도와줍니다
+    /// </summary>
+    private void ApplyOvertakingPush(Collider2D target)
+    {
+        if (target == null) return;
+        Cat other = target.GetComponent<Cat>();
+        if (other == null || cat == null) return;
+
+        int diff = Mathf.Max(0, cat.CurrentStrength - other.CurrentStrength);
+        float pushForce = diff * pushForcePerStrength;
+        if (pushForce <= 0.01f) return;
+
+        Vector3 away = (target.transform.position - transform.position).normalized;
+        Vector3 side = Vector3.Cross(away, Vector3.forward).normalized; // 측면 밀기
+
+        CatMovement otherMove = target.GetComponent<CatMovement>();
+        if (otherMove != null)
+        {
+            otherMove.AddForce(side, pushForce, ForceMode2D.Impulse);
         }
     }
 
@@ -250,8 +342,18 @@ public class CatAI : MonoBehaviour
                 
                 if (distance > 0f)
                 {
-                    // 거리에 반비례하는 회피 강도
+                    // 거리에 반비례하는 기본 회피 강도
                     float avoidanceStrength = (avoidanceRadius - distance) / avoidanceRadius;
+
+                    // 힘(Strength)에 따른 충돌 저항 조정
+                    int myStrength = cat != null ? cat.CurrentStrength : 50;
+                    Cat otherCat = col.GetComponent<Cat>();
+                    int otherStrength = otherCat != null ? otherCat.CurrentStrength : 50;
+                    float strengthDelta = otherStrength - myStrength; // >0: 상대가 더 강함
+                    // -50% ~ +50% 범위로 회피 가중치 조정
+                    float resistanceFactor = Mathf.Clamp(1f + (strengthDelta / 100f) * 0.5f, 0.5f, 1.5f);
+                    avoidanceStrength *= resistanceFactor;
+
                     avoidanceVector += direction.normalized * avoidanceStrength;
                     avoidanceCount++;
                 }
