@@ -6,9 +6,19 @@ using UnityEngine;
 public class CatMovement : MonoBehaviour
 {
     [Header("이동 설정")]
-    [SerializeField] private float moveSpeed = 5f; // 기본 이동 속도
+    [SerializeField] private float moveSpeed = 1f; // 기본 이동 속도
     [SerializeField] private float rotationSpeed = 10f; // 회전 속도
     [SerializeField] private float smoothTime = 0.1f; // 부드러운 이동을 위한 시간
+
+    [Header("체력 시스템")]
+    [SerializeField] private float healthDrainRate = 5f; // 달리는 동안 체력 감소 속도 (초당)
+    [SerializeField] private float healthRecoveryRate = 10f; // 정지 상태에서 체력 회복 속도 (초당)
+    [SerializeField] private float originalMoveSpeed; // 원래 이동 속도 저장
+    [SerializeField] private bool isExhausted = false; // 체력이 0이 되어 속도가 절반으로 줄어든 상태
+
+    // 체력 시스템을 위한 누적 변수들
+    private float healthDrainAccumulator = 0f; // 체력 감소 누적값
+    private float healthRecoveryAccumulator = 0f; // 체력 회복 누적값
 
     [Header("물리 설정")]
     [SerializeField] private float maxVelocity = 15f; // 최대 속도
@@ -17,6 +27,7 @@ public class CatMovement : MonoBehaviour
     [Header("참조")]
     [SerializeField] private Rigidbody2D rb; // 2D 물리 컴포넌트
     [SerializeField] private Cat cat; // 고양이 컴포넌트
+    [SerializeField] private CatAI catAI; // 고양이 AI 컴포넌트
 
     [Header("이동 상태")]
     [SerializeField] private Vector3 targetDirection; // 목표 방향
@@ -40,6 +51,7 @@ public class CatMovement : MonoBehaviour
         // 컴포넌트 참조 가져오기
         rb = GetComponent<Rigidbody2D>();
         cat = GetComponent<Cat>();
+        catAI = GetComponent<CatAI>();
 
         if (rb == null)
         {
@@ -54,9 +66,12 @@ public class CatMovement : MonoBehaviour
         // 물리 설정
         if (rb != null)
         {
-            rb.linearDamping = drag;
-            rb.angularDamping = 10f;
+            rb.linearDamping = 0f; // 직접 속도 제어하므로 저항 제거
+            rb.angularDamping = 5f; // 회전 저항만 유지
         }
+
+        // 원래 이동 속도 저장
+        ApplyStats();
     }
 
     /// <summary>
@@ -66,22 +81,105 @@ public class CatMovement : MonoBehaviour
     {
         if (rb == null) return;
 
+        // 목표 방향이 설정되어 있으면 목표 속도로 직접 설정
+        if (targetDirection.magnitude > 0.1f)
+        {
+            Vector3 targetVelocity = targetDirection * moveSpeed;
+
+            // 부드러운 속도 전환
+            Vector3 currentVelocity = rb.linearVelocity;
+            Vector3 newVelocity = Vector3.Lerp(currentVelocity, targetVelocity, Time.deltaTime * 5f);
+
+            // 속도 제한 적용
+            if (newVelocity.magnitude > maxVelocity)
+            {
+                newVelocity = newVelocity.normalized * maxVelocity;
+            }
+
+            rb.linearVelocity = newVelocity;
+        }
+        else
+        {
+            // 목표 방향이 없으면 점진적으로 정지
+            Vector3 currentVelocity = rb.linearVelocity;
+            Vector3 newVelocity = Vector3.Lerp(currentVelocity, Vector3.zero, Time.deltaTime * 3f);
+            rb.linearVelocity = newVelocity;
+        }
+
         // 현재 속도 계산
         currentVelocity = rb.linearVelocity;
-        
+
         // 이동 중인지 확인
         isMoving = currentVelocity.magnitude > 0.1f;
 
-        // 속도 제한
-        if (currentVelocity.magnitude > maxVelocity)
-        {
-            rb.linearVelocity = currentVelocity.normalized * maxVelocity;
-        }
-
-        // 고양이 방향 회전
+        // 고양이 방향 회전 및 플립
         if (currentVelocity.magnitude > 0.1f)
         {
-            RotateTowardsDirection(currentVelocity);
+            FlipTowardsDirection(currentVelocity);
+        }
+
+        // 체력 관리
+        UpdateHealthSystem();
+    }
+
+    /// <summary>
+    /// 체력 시스템을 업데이트합니다
+    /// </summary>
+    private void UpdateHealthSystem()
+    {
+        if (cat == null) return;
+
+        // 달리는 동안 체력 감소
+        if (isMoving)
+        {
+            healthDrainAccumulator += healthDrainRate * Time.deltaTime;
+            healthRecoveryAccumulator = 0f; // 이동 중이면 회복 누적값 리셋
+
+            // 누적값이 1 이상이 되면 체력 감소
+            if (healthDrainAccumulator >= 1f)
+            {
+                int healthLoss = Mathf.FloorToInt(healthDrainAccumulator);
+                int newHealth = Mathf.Max(0, cat.CurrentHealth - healthLoss);
+                cat.SetStat(StatType.Health, newHealth);
+                healthDrainAccumulator -= healthLoss; // 사용한 만큼 누적값에서 빼기
+
+                // 체력이 0이 되면 Recovery 상태로 전환
+                if (newHealth <= 0 && !isExhausted)
+                {
+                    isExhausted = true;
+                    if (catAI != null)
+                    {
+                        catAI.SetAIState(CatAI.AIState.Recovery);
+                    }
+                    Debug.Log($"{cat.CatStats.CatName} 체력이 고갈되어 회복 상태로 전환됩니다!");
+                }
+            }
+        }
+        else
+        {
+            // 정지 상태에서는 체력 회복
+            if (cat.CurrentHealth < cat.CatStats.Health)
+            {
+                healthRecoveryAccumulator += healthRecoveryRate * Time.deltaTime;
+                healthDrainAccumulator = 0f; // 정지 중이면 감소 누적값 리셋
+
+                // 누적값이 1 이상이 되면 체력 회복
+                if (healthRecoveryAccumulator >= 1f)
+                {
+                    int healthGain = Mathf.FloorToInt(healthRecoveryAccumulator);
+                    int newHealth = Mathf.Min(cat.CatStats.Health, cat.CurrentHealth + healthGain);
+                    cat.SetStat(StatType.Health, newHealth);
+                    healthRecoveryAccumulator -= healthGain; // 사용한 만큼 누적값에서 빼기
+
+                    // 체력이 최대치가 되면 원래 속도로 복구
+                    if (newHealth >= cat.CatStats.Health && isExhausted)
+                    {
+                        cat.SetStat(StatType.Speed, originalMoveSpeed);
+                        isExhausted = false;
+                        Debug.Log($"{cat.CatStats.CatName} 체력이 회복되어 원래 속도로 돌아갑니다!");
+                    }
+                }
+            }
         }
     }
 
@@ -113,7 +211,7 @@ public class CatMovement : MonoBehaviour
 
         Vector3 direction = (targetPosition - transform.position).normalized;
         SetTargetDirection(direction);
-        
+
         // 물리 기반 이동
         Vector3 force = direction * moveSpeed;
         rb.AddForce(force, ForceMode2D.Force);
@@ -128,31 +226,34 @@ public class CatMovement : MonoBehaviour
         if (rb == null) return;
 
         Vector3 direction = (targetPosition - transform.position).normalized;
-        
+
         // 부드러운 속도 계산
         Vector3 targetVelocity = direction * moveSpeed;
         Vector3 smoothVelocity = Vector3.SmoothDamp(rb.linearVelocity, targetVelocity, ref velocitySmoothing, smoothTime);
-        
+
         // 물리 적용
         rb.linearVelocity = smoothVelocity;
     }
 
     /// <summary>
-    /// 방향으로 회전합니다
+    /// 이동 방향에 따라 고양이를 좌우로 플립합니다
     /// </summary>
-    /// <param name="direction">회전할 방향</param>
-    private void RotateTowardsDirection(Vector3 direction)
+    /// <param name="direction">이동 방향</param>
+    private void FlipTowardsDirection(Vector3 direction)
     {
         if (direction.magnitude < 0.1f) return;
 
-        // 목표 각도 계산
-        float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        
-        // 부드러운 회전
-        float currentAngle = transform.eulerAngles.z;
-        float newAngle = Mathf.LerpAngle(currentAngle, targetAngle, rotationSpeed * Time.deltaTime);
-        
-        transform.rotation = Quaternion.Euler(0f, 0f, newAngle);
+        // X 방향에 따라 스케일을 조정하여 좌우 플립
+        if (direction.x > 0.1f)
+        {
+            // 오른쪽으로 이동 - 정상 방향 (스케일 X = 1)
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+        else if (direction.x < -0.1f)
+        {
+            // 왼쪽으로 이동 - 뒤집기 (스케일 X = -1)
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
     }
 
     /// <summary>
@@ -165,7 +266,7 @@ public class CatMovement : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
             rb.angularVelocity = 0f;
         }
-        
+
         isMoving = false;
         targetDirection = Vector3.zero;
     }
@@ -179,17 +280,29 @@ public class CatMovement : MonoBehaviour
 
         // 속도 스탯에 따른 이동 속도 조절
         float speedMultiplier = cat.CurrentSpeed / 10f; // 0.1 ~ 2.0
-        moveSpeed = 5f * speedMultiplier; // 기본 속도 5에서 스탯에 따라 조절
+        float baseSpeed = 5f * speedMultiplier; // 기본 속도 5에서 스탯에 따라 조절
+
+        // 힘 스탯에 따른 이동 속도 보너스 (최대 +50%)
+        float strengthMultiplier = cat.CurrentStrength / 100f; // 0.01 ~ 1.0
+        float strengthBonus = 1f + strengthMultiplier * 0.5f; // 1.0 ~ 1.5
+        float modifiedSpeed = baseSpeed * strengthBonus;
+
+        // 체력이 고갈되지 않은 상태에서만 원래 속도 업데이트
+        if (!isExhausted)
+        {
+            moveSpeed = modifiedSpeed;
+            originalMoveSpeed = modifiedSpeed;
+        }
 
         // 가속도 스탯에 따른 회전 속도 조절
         float accelerationMultiplier = cat.CurrentAcceleration / 10f; // 0.1 ~ 2.0
         rotationSpeed = 10f * accelerationMultiplier;
 
-        // 체력 스탯에 따른 최대 속도 조절
-        float healthMultiplier = cat.CurrentHealth / 100f; // 0.01 ~ 1.0
+        // 체력 스탯에 따른 최대 속도 조절 (현재 체력이 아닌 최대 체력 기준)
+        float healthMultiplier = cat.CatStats.Health / 100f; // 0.01 ~ 1.0
         maxVelocity = 15f * healthMultiplier;
 
-        Debug.Log($"{cat.CatStats.CatName} 스탯 적용: 속도({moveSpeed:F2}) 회전({rotationSpeed:F2}) 최대속도({maxVelocity:F2})");
+        Debug.Log($"{cat.CatStats.CatName} 스탯 적용: 이동속도({moveSpeed:F2}, 힘보너스 {strengthBonus:F2}) 회전({rotationSpeed:F2}) 최대속도({maxVelocity:F2})");
     }
 
     /// <summary>
@@ -206,6 +319,20 @@ public class CatMovement : MonoBehaviour
     }
 
     /// <summary>
+    /// 특정 방향으로 힘을 가합니다 (ForceMode2D 선택)
+    /// </summary>
+    /// <param name="direction">힘을 가할 방향</param>
+    /// <param name="force">힘의 크기</param>
+    /// <param name="mode">ForceMode2D</param>
+    public void AddForce(Vector3 direction, float force, ForceMode2D mode)
+    {
+        if (rb != null)
+        {
+            rb.AddForce(direction.normalized * force, mode);
+        }
+    }
+
+    /// <summary>
     /// 현재 위치에서 특정 거리만큼 이동합니다
     /// </summary>
     /// <param name="direction">이동 방향</param>
@@ -214,6 +341,14 @@ public class CatMovement : MonoBehaviour
     {
         Vector3 targetPosition = transform.position + direction.normalized * distance;
         MoveTowardsTarget(targetPosition);
+    }
+
+    /// <summary>
+    /// 피로 상태를 리셋합니다
+    /// </summary>
+    public void ResetExhaustion()
+    {
+        isExhausted = false;
     }
 
     /// <summary>
