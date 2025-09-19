@@ -18,15 +18,11 @@ public class LobbyManager : MonoBehaviour
     [SerializeField] private CatStats[] m_availableCats;
     [SerializeField] private CatStats m_selectedCat;
 
-    [Header("부적 데이터")]
-    [SerializeField] private Transform m_charmContainer;
-    [SerializeField] private GameObject m_charmPrefab;
-
     private int m_currentPhase = 0;
-    private List<CharmData> m_availableCharms = new List<CharmData>();
+    private int m_selectedCatIndex = -1; // 선택된 고양이의 인덱스
 
     public static LobbyManager Instance { get; private set; }
-    public CatStats SelectedCat => m_selectedCat;
+    public CatStats SelectedCat => m_selectedCatIndex >= 0 && m_selectedCatIndex < m_availableCats.Length ? m_availableCats[m_selectedCatIndex] : null;
     public int CurrentPhase => m_currentPhase;
 
     private void Awake()
@@ -53,8 +49,11 @@ public class LobbyManager : MonoBehaviour
     private void InitializeLobby()
     {
         m_currentPhase = 0;
+        
+        // 레이스 패널 초기 상태를 비활성화로 설정
+        m_racePanel?.SetActive(false);
+        
         ShowPhasePanel();
-        GenerateRandomCharms();
     }
 
     /// <summary>
@@ -62,7 +61,7 @@ public class LobbyManager : MonoBehaviour
     /// </summary>
     private void ShowPhasePanel()
     {
-        // 모든 패널 비활성화
+        // 모든 패널 비활성화 (레이스 패널 제외 - 독립적으로 관리)
         m_catPanel?.SetActive(false);
         m_statPanel?.SetActive(false);
         m_charmPanel?.SetActive(false);
@@ -83,11 +82,24 @@ public class LobbyManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 고양이 선택 완료
+    /// 고양이 선택 완료 (인덱스로 선택)
     /// </summary>
     public void OnCatSelected(CatStats selectedCat)
     {
-        m_selectedCat = selectedCat;
+        // 선택된 고양이의 인덱스를 찾아서 저장
+        for (int i = 0; i < m_availableCats.Length; i++)
+        {
+            if (m_availableCats[i] == selectedCat)
+            {
+                m_selectedCatIndex = i;
+                break;
+            }
+        }
+        
+        Debug.Log($"고양이 선택됨: {selectedCat.CatName} (인덱스: {m_selectedCatIndex})");
+        Debug.Log($"선택된 고양이 스탯: {selectedCat.ToString()}");
+        
+        // 다음 페이즈로 진행
         NextPhase();
     }
 
@@ -96,15 +108,17 @@ public class LobbyManager : MonoBehaviour
     /// </summary>
     public void OnStatEnhanced(StatType statType, int value)
     {
-        if (m_selectedCat != null)
+        if (m_selectedCatIndex >= 0 && m_selectedCatIndex < m_availableCats.Length)
         {
-            m_selectedCat.ModifyStats(
+            var selectedCat = m_availableCats[m_selectedCatIndex];
+            selectedCat.ModifyStats(
                 statType == StatType.Speed ? value : 0,
                 statType == StatType.Acceleration ? value : 0,
                 statType == StatType.Health ? value : 0,
                 statType == StatType.Intelligence ? value : 0,
                 statType == StatType.Strength ? value : 0
             );
+            Debug.Log($"스탯 강화 완료: {selectedCat.CatName} - {statType} +{value}");
         }
         NextPhase();
     }
@@ -114,17 +128,24 @@ public class LobbyManager : MonoBehaviour
     /// </summary>
     public void OnCharmSelected(CharmData charmData)
     {
-        if (m_selectedCat != null)
+        if (m_selectedCatIndex >= 0 && m_selectedCatIndex < m_availableCats.Length)
         {
-            m_selectedCat.ModifyStats(
+            var selectedCat = m_availableCats[m_selectedCatIndex];
+            selectedCat.ModifyStats(
                 charmData.speedModifier,
                 charmData.accelerationModifier,
                 charmData.healthModifier,
                 charmData.intelligenceModifier,
                 charmData.strengthModifier
             );
+            Debug.Log($"부적 적용 완료: {selectedCat.CatName} - 속도({charmData.speedModifier:+0;-0}) 가속도({charmData.accelerationModifier:+0;-0}) 체력({charmData.healthModifier:+0;-0}) 지능({charmData.intelligenceModifier:+0;-0}) 힘({charmData.strengthModifier:+0;-0})");
         }
         SaveGameData();
+        
+        // 부적 선택 완료 후 레이스 패널 활성화
+        Debug.Log("부적 선택 완료! 레이스 패널을 활성화합니다.");
+        m_charmPanel?.SetActive(false);
+        m_racePanel?.SetActive(true);
     }
 
     /// <summary>
@@ -144,73 +165,16 @@ public class LobbyManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 랜덤 부적 생성
-    /// </summary>
-    private void GenerateRandomCharms()
-    {
-        m_availableCharms.Clear();
-        
-        for (int i = 0; i < 3; i++)
-        {
-            var charmData = CreateRandomCharm();
-            m_availableCharms.Add(charmData);
-        }
-    }
-
-    /// <summary>
-    /// 랜덤 부적 데이터 생성
-    /// </summary>
-    private CharmData CreateRandomCharm()
-    {
-        var charmData = new CharmData();
-        
-        // 2개의 스탯을 랜덤하게 선택
-        var statTypes = new List<StatType> { StatType.Speed, StatType.Acceleration, StatType.Health, StatType.Intelligence, StatType.Strength };
-        var selectedStats = new List<StatType>();
-        
-        // 2개 스탯 랜덤 선택
-        for (int i = 0; i < 2; i++)
-        {
-            int randomIndex = Random.Range(0, statTypes.Count);
-            selectedStats.Add(statTypes[randomIndex]);
-            statTypes.RemoveAt(randomIndex);
-        }
-
-        // 각 스탯에 -4~4 랜덤 값 할당
-        foreach (var statType in selectedStats)
-        {
-            int value = Random.Range(-4, 5);
-            switch (statType)
-            {
-                case StatType.Speed:
-                    charmData.speedModifier = value;
-                    break;
-                case StatType.Acceleration:
-                    charmData.accelerationModifier = value;
-                    break;
-                case StatType.Health:
-                    charmData.healthModifier = value;
-                    break;
-                case StatType.Intelligence:
-                    charmData.intelligenceModifier = value;
-                    break;
-                case StatType.Strength:
-                    charmData.strengthModifier = value;
-                    break;
-            }
-        }
-
-        return charmData;
-    }
 
     /// <summary>
     /// 게임 데이터 저장 (PlayerPrefs 기반)
     /// </summary>
     private void SaveGameData()
     {
-        if (m_selectedCat != null)
+        if (m_selectedCatIndex >= 0 && m_selectedCatIndex < m_availableCats.Length)
         {
+            var selectedCat = m_availableCats[m_selectedCatIndex];
+            
             // 저장 키 상수
             const string C_SELECTED_CAT_NAME = "SelectedCatName";
             const string C_CAT_SPEED = "CatSpeed";
@@ -219,13 +183,15 @@ public class LobbyManager : MonoBehaviour
             const string C_CAT_INTELLIGENCE = "CatIntelligence";
             const string C_CAT_STRENGTH = "CatStrength";
 
-            PlayerPrefs.SetString(C_SELECTED_CAT_NAME, m_selectedCat.CatName);
-            PlayerPrefs.SetFloat(C_CAT_SPEED, m_selectedCat.Speed);
-            PlayerPrefs.SetFloat(C_CAT_ACCELERATION, m_selectedCat.Acceleration);
-            PlayerPrefs.SetInt(C_CAT_HEALTH, m_selectedCat.Health);
-            PlayerPrefs.SetInt(C_CAT_INTELLIGENCE, m_selectedCat.Intelligence);
-            PlayerPrefs.SetInt(C_CAT_STRENGTH, m_selectedCat.Strength);
+            PlayerPrefs.SetString(C_SELECTED_CAT_NAME, selectedCat.CatName);
+            PlayerPrefs.SetFloat(C_CAT_SPEED, selectedCat.Speed);
+            PlayerPrefs.SetFloat(C_CAT_ACCELERATION, selectedCat.Acceleration);
+            PlayerPrefs.SetInt(C_CAT_HEALTH, selectedCat.Health);
+            PlayerPrefs.SetInt(C_CAT_INTELLIGENCE, selectedCat.Intelligence);
+            PlayerPrefs.SetInt(C_CAT_STRENGTH, selectedCat.Strength);
             PlayerPrefs.Save();
+            
+            Debug.Log($"게임 데이터 저장 완료: {selectedCat.CatName}");
         }
     }
 
@@ -312,11 +278,12 @@ public class LobbyManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 메인씬 로드
+    /// 메인씬 로드 (현재 주석 처리)
     /// </summary>
-    private void LoadMainScene()
+    public void LoadMainScene()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MainScene");
+        Debug.Log("메인씬 로드 요청됨 - 현재 주석 처리됨");
+        // UnityEngine.SceneManagement.SceneManager.LoadScene("MainScene");
     }
 
     /// <summary>
@@ -326,7 +293,25 @@ public class LobbyManager : MonoBehaviour
     {
         if (m_racePanel != null)
         {
-            m_racePanel.SetActive(!m_racePanel.activeSelf);
+            bool newState = !m_racePanel.activeSelf;
+            m_racePanel.SetActive(newState);
+            Debug.Log($"레이스 패널 토글: {newState}");
+        }
+        else
+        {
+            Debug.LogError("레이스 패널이 할당되지 않았습니다!");
+        }
+    }
+
+    /// <summary>
+    /// 레이스 패널 강제 비활성화
+    /// </summary>
+    public void HideRacePanel()
+    {
+        if (m_racePanel != null)
+        {
+            m_racePanel.SetActive(false);
+            Debug.Log("레이스 패널 비활성화됨");
         }
     }
 

@@ -12,6 +12,9 @@ public class RacePanelController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI m_raceDescription;
     [SerializeField] private Button m_startRaceButton;
 
+    [Header("레이스 패널 버튼")]
+    [SerializeField] private Button m_racePanelButton;
+
     private void Start()
     {
         InitializeRacePanel();
@@ -23,6 +26,7 @@ public class RacePanelController : MonoBehaviour
     private void InitializeRacePanel()
     {
         m_startRaceButton?.onClick.AddListener(OnStartRaceClicked);
+        m_racePanelButton?.onClick.AddListener(OnRacePanelButtonClicked);
         UpdateRaceInfo();
     }
 
@@ -38,7 +42,28 @@ public class RacePanelController : MonoBehaviour
 
         if (m_raceDescription != null)
         {
-            m_raceDescription.text = "고양이들과 함께하는 레이싱 대회에 참가하세요!";
+            m_raceDescription.text =
+                                   "- 계절 : 봄\n" +
+                                   "- 거리 : 단거리\n" +
+                                   "- 날씨 : 비";
+        }
+    }
+
+    /// <summary>
+    /// 레이스 패널 버튼 클릭 처리
+    /// </summary>
+    private void OnRacePanelButtonClicked()
+    {
+        Debug.Log("레이스 패널 버튼 클릭됨!");
+
+        // LobbyManager를 통해 레이스 패널 토글
+        if (LobbyManager.Instance != null)
+        {
+            LobbyManager.Instance.ToggleRacePanel();
+        }
+        else
+        {
+            Debug.LogError("LobbyManager.Instance가 null입니다!");
         }
     }
 
@@ -47,7 +72,22 @@ public class RacePanelController : MonoBehaviour
     /// </summary>
     private void OnStartRaceClicked()
     {
-        // 메인씬으로 이동
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MainScene");
+        Debug.Log("레이스 시작 버튼 클릭됨!");
+
+        // 레이스 패널 비활성화
+        if (LobbyManager.Instance != null)
+        {
+            LobbyManager.Instance.HideRacePanel();
+        }
+
+        // LobbyManager를 통해 메인씬 로드
+        if (LobbyManager.Instance != null)
+        {
+            LobbyManager.Instance.LoadMainScene();
+        }
+        else
+        {
+            Debug.LogError("LobbyManager.Instance가 null입니다!");
+        }
     }
 }

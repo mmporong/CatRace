@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
 /// <summary>
 /// 고양이 선택 패널 컨트롤러
@@ -14,6 +15,10 @@ public class CatPanelController : MonoBehaviour
 
     [Header("고양이 데이터")]
     [SerializeField] private CatStats[] m_availableCats;
+
+    [Header("고양이 이름 생성")]
+    [SerializeField] private string[] m_adjectives = { "푹신한", "동그란", "오렌지", "우아한", "장난스러운", "똑똑한", "용감한", "사랑스러운", "신비로운", "활발한" };
+    [SerializeField] private string[] m_breeds = { "히말라얀", "턱시도", "노르웨이 숲", "페르시안", "러시안 블루", "메인쿤", "스코티시 폴드", "브리티시 숏헤어", "아메리칸 숏헤어", "뱅갈" };
 
     private void Start()
     {
@@ -30,6 +35,9 @@ public class CatPanelController : MonoBehaviour
             Debug.LogError("사용 가능한 고양이 데이터가 설정되지 않았습니다!");
             return;
         }
+
+        // 고양이 이름 생성 및 적용
+        GenerateCatNames();
 
         for (int i = 0; i < m_catButtons.Length && i < m_availableCats.Length; i++)
         {
@@ -59,7 +67,38 @@ public class CatPanelController : MonoBehaviour
     {
         if (catIndex >= 0 && catIndex < m_availableCats.Length)
         {
+            Debug.Log($"고양이 선택됨: {m_availableCats[catIndex].CatName} (인덱스: {catIndex})");
             LobbyManager.Instance?.OnCatSelected(m_availableCats[catIndex]);
         }
+    }
+
+    /// <summary>
+    /// 고양이 이름들을 랜덤하게 생성합니다
+    /// </summary>
+    private void GenerateCatNames()
+    {
+        if (m_availableCats == null) return;
+
+        for (int i = 0; i < m_availableCats.Length; i++)
+        {
+            string generatedName = GenerateRandomCatName();
+            
+            // ScriptableObject의 이름을 리플렉션으로 수정
+            var nameField = typeof(CatStats).GetField("catName", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            nameField?.SetValue(m_availableCats[i], generatedName);
+            
+            Debug.Log($"고양이 {i}번 이름 생성: {generatedName}");
+        }
+    }
+
+    /// <summary>
+    /// 랜덤한 고양이 이름을 생성합니다
+    /// </summary>
+    private string GenerateRandomCatName()
+    {
+        string adjective = m_adjectives[Random.Range(0, m_adjectives.Length)];
+        string breed = m_breeds[Random.Range(0, m_breeds.Length)];
+        
+        return $"{adjective} {breed}";
     }
 }

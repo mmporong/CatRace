@@ -1,49 +1,101 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 /// <summary>
 /// 부적 패널 컨트롤러
 /// </summary>
 public class CharmPanelController : MonoBehaviour
 {
-    [Header("부적 컨테이너")]
-    [SerializeField] private Transform m_charmContainer;
-    [SerializeField] private GameObject m_charmPrefab;
+    [Header("부적 버튼들")]
+    [SerializeField] private Button[] m_charmButtons;
+    [SerializeField] private Image[] m_charmImages;
+    [SerializeField] private TextMeshProUGUI[] m_charmNames;
+    [SerializeField] private TextMeshProUGUI[] m_charmDescriptions;
+
+    [Header("부적 스프라이트")]
+    [SerializeField] private Sprite[] m_charmSprites;
+
+    private CharmData[] m_availableCharms = new CharmData[3];
 
     private void Start()
     {
-        GenerateCharmButtons();
+        InitializeCharmButtons();
     }
 
     /// <summary>
-    /// 부적 버튼들 생성
+    /// 부적 버튼들 초기화
     /// </summary>
-    private void GenerateCharmButtons()
+    private void InitializeCharmButtons()
     {
-        if (m_charmContainer == null || m_charmPrefab == null) return;
+        Debug.Log("부적 버튼 초기화 시작");
+        
+        // 랜덤 부적 데이터 생성
+        GenerateRandomCharms();
 
-        // 기존 부적들 제거
-        foreach (Transform child in m_charmContainer)
+        if (m_charmButtons == null || m_charmButtons.Length == 0)
         {
-            Destroy(child.gameObject);
+            Debug.LogError("부적 버튼이 설정되지 않았습니다!");
+            return;
         }
 
-        // LobbyManager에서 부적 데이터 가져오기
-        var lobbyManager = LobbyManager.Instance;
-        if (lobbyManager == null) return;
-
-        // 3개의 부적 생성
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < m_charmButtons.Length && i < m_availableCharms.Length; i++)
         {
-            GameObject charmObj = Instantiate(m_charmPrefab, m_charmContainer);
-            Charm charmComponent = charmObj.GetComponent<Charm>();
+            int charmIndex = i; // 클로저를 위한 로컬 변수
             
-            if (charmComponent != null)
+            Debug.Log($"부적 {i}번 버튼 설정 중...");
+            
+            // 버튼 이벤트 연결
+            m_charmButtons[i].onClick.RemoveAllListeners();
+            m_charmButtons[i].onClick.AddListener(() => OnCharmButtonClicked(charmIndex));
+
+            // 부적 정보 설정
+            if (m_charmImages[i] != null)
             {
-                // 랜덤 부적 데이터 생성
-                var charmData = CreateRandomCharmData();
-                charmComponent.SetCharmData(charmData);
+                m_charmImages[i].sprite = GenerateCharmSprite();
             }
+
+            if (m_charmNames[i] != null)
+            {
+                m_charmNames[i].text = GenerateCharmName();
+            }
+
+            if (m_charmDescriptions[i] != null)
+            {
+                m_charmDescriptions[i].text = GenerateCharmDescription(m_availableCharms[i]);
+            }
+        }
+        
+        Debug.Log("부적 버튼 초기화 완료");
+    }
+
+    /// <summary>
+    /// 부적 버튼 클릭 처리
+    /// </summary>
+    private void OnCharmButtonClicked(int charmIndex)
+    {
+        Debug.Log($"부적 버튼 클릭됨: {charmIndex}");
+        
+        if (charmIndex >= 0 && charmIndex < m_availableCharms.Length)
+        {
+            Debug.Log($"부적 데이터 전송: {m_availableCharms[charmIndex]}");
+            LobbyManager.Instance?.OnCharmSelected(m_availableCharms[charmIndex]);
+        }
+        else
+        {
+            Debug.LogError($"잘못된 부적 인덱스: {charmIndex}");
+        }
+    }
+
+    /// <summary>
+    /// 랜덤 부적들 생성
+    /// </summary>
+    private void GenerateRandomCharms()
+    {
+        for (int i = 0; i < m_availableCharms.Length; i++)
+        {
+            m_availableCharms[i] = CreateRandomCharmData();
         }
     }
 
@@ -91,5 +143,58 @@ public class CharmPanelController : MonoBehaviour
         }
 
         return charmData;
+    }
+
+    /// <summary>
+    /// 부적 이름 생성
+    /// </summary>
+    private string GenerateCharmName()
+    {
+        string[] charmNames = { "신비한 부적", "마법의 부적", "고대의 부적", "행운의 부적", "강력한 부적" };
+        return charmNames[Random.Range(0, charmNames.Length)];
+    }
+
+    /// <summary>
+    /// 부적 설명 생성
+    /// </summary>
+    private string GenerateCharmDescription(CharmData charmData)
+    {
+        string description = "";
+        
+        if (charmData.speedModifier != 0)
+        {
+            description += $"속도 {charmData.speedModifier:+0;-0} ";
+        }
+        if (charmData.accelerationModifier != 0)
+        {
+            description += $"가속도 {charmData.accelerationModifier:+0;-0} ";
+        }
+        if (charmData.healthModifier != 0)
+        {
+            description += $"체력 {charmData.healthModifier:+0;-0} ";
+        }
+        if (charmData.intelligenceModifier != 0)
+        {
+            description += $"지능 {charmData.intelligenceModifier:+0;-0} ";
+        }
+        if (charmData.strengthModifier != 0)
+        {
+            description += $"힘 {charmData.strengthModifier:+0;-0} ";
+        }
+
+        return description.Trim();
+    }
+
+    /// <summary>
+    /// 부적 스프라이트 생성
+    /// </summary>
+    private Sprite GenerateCharmSprite()
+    {
+        if (m_charmSprites == null || m_charmSprites.Length == 0)
+        {
+            return null;
+        }
+        
+        return m_charmSprites[Random.Range(0, m_charmSprites.Length)];
     }
 }
