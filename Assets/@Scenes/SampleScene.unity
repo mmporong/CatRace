@@ -1830,7 +1830,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RaceHUD
   countdownText: {fileID: 1620571670}
   raceTimeText: {fileID: 2105028391}
-  lapText: {fileID: 1630732381}
   totalLapsText: {fileID: 1985668763}
   hudPanel: {fileID: 334751319}
   countdownPanel: {fileID: 425667515}
@@ -2407,6 +2406,8 @@ MonoBehaviour:
   - {fileID: 1551648689}
   trackManager: {fileID: 1488251255}
   racers: []
+  raceProgresses: []
+  progressUpdateInterval: 0.1
   currentState: 0
   raceClock: 0
 --- !u!1 &1098125685

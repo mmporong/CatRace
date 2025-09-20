@@ -190,3 +190,4 @@ public class RaceProgress
         return $"{catName}: 랩 {currentLap}, 포인트 {currentTrackPointIndex}, 진행도 {totalProgress:P1}, 순위 {currentRank}";
     }
 }
+
