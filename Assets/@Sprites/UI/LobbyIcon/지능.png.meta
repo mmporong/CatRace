@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: 6b66e314c8597964dbc9fccbf2836862
+guid: a684ffd4d8ea2fe4294a7fe2a760ab63
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 649223268058989734
-    second: Button_0
+      213: -1493754982541115212
+    second: "\uC9C0\uB2A5_0"
+  - first:
+      213: -6639425141457871248
+    second: "\uC9C0\uB2A5_1"
+  - first:
+      213: -6874124083388381049
+    second: "\uC9C0\uB2A5_2"
+  - first:
+      213: 1672121274586585443
+    second: "\uC9C0\uB2A5_3"
+  - first:
+      213: 6879699141435086362
+    second: "\uC9C0\uB2A5_4"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +49,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -46,7 +58,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -113,13 +125,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Button_0
+      name: "\uC9C0\uB2A5_0"
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 24
-        height: 24
+        x: 20
+        y: 250
+        width: 15
+        height: 14
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +140,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6a403906f11820900800000000000000
-      internalID: 649223268058989734
+      spriteID: 4b0ca24f1cd154be0800000000000000
+      internalID: -1493754982541115212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC9C0\uB2A5_1"
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 259
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07e1b92d2060cd3a0800000000000000
+      internalID: -6639425141457871248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC9C0\uB2A5_2"
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 250
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7888dab11943a90a0800000000000000
+      internalID: -6874124083388381049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC9C0\uB2A5_3"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 215
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3695b11a071943710800000000000000
+      internalID: 1672121274586585443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC9C0\uB2A5_4"
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 0
+        width: 224
+        height: 253
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a165cce3be9997f50800000000000000
+      internalID: 6879699141435086362
       vertices: []
       indices: 
       edges: []
@@ -138,7 +238,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +248,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Button_0: 649223268058989734
+      "\uC9C0\uB2A5_0": -1493754982541115212
+      "\uC9C0\uB2A5_1": -6639425141457871248
+      "\uC9C0\uB2A5_2": -6874124083388381049
+      "\uC9C0\uB2A5_3": 1672121274586585443
+      "\uC9C0\uB2A5_4": 6879699141435086362
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 570f5f4ec02c8e543bf285efc5eed031, type: 3}
+  m_Name: CatStat_0
+  m_EditorClassIdentifier: Assembly-CSharp::CatStats
+  catName: "\uAE30\uBCF8 \uACE0\uC591\uC774"
+  catSprite: {fileID: 0}
+  description: "\uACE0\uC591\uC774 \uC124\uBA85"
+  speed: 5
+  acceleration: 10
+  health: 50
+  intelligence: 50
+  strength: 80
