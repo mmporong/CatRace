@@ -8,7 +8,10 @@ public class CatStats : ScriptableObject
 {
     [Header("고양이 기본 정보")]
     [SerializeField] private string catName = "기본 고양이"; // 고양이 이름
-    [SerializeField] private Sprite catSprite; // 고양이 스프라이트
+    [SerializeField] private int catIndex = 0; // 고양이 인덱스 (0-19)
+    [SerializeField] private Sprite[] catSprites = new Sprite[20]; // 고양이 스프라이트 배열 (20개)
+    [SerializeField] private Sprite[] catSprites_Sleep = new Sprite[20]; // 잠자는 스프라이트 배열 (20개)
+    [SerializeField] private Sprite[] catSprites_Run = new Sprite[20]; // 달리는 스프라이트 배열 (20개)
     [SerializeField] private string description = "고양이 설명"; // 고양이 설명
 
     [Header("고양이 스탯")]
@@ -20,7 +23,10 @@ public class CatStats : ScriptableObject
 
     // 공개 프로퍼티들 (읽기 전용)
     public string CatName => catName;
-    public Sprite CatSprite => catSprite;
+    public int CatIndex => catIndex;
+    public Sprite CatSprite => GetCatSprite(catIndex);
+    public Sprite CatSprite_Sleep => GetCatSprite_Sleep(catIndex);
+    public Sprite CatSprite_Run => GetCatSprite_Run(catIndex);
     public string Description => description;
     
     // 스탯 프로퍼티들 (읽기 전용)
@@ -82,6 +88,104 @@ public class CatStats : ScriptableObject
     public float GetTotalStats()
     {
         return speed + acceleration + health + intelligence + strength;
+    }
+
+    /// <summary>
+    /// 인덱스에 해당하는 기본 스프라이트를 가져옵니다
+    /// </summary>
+    /// <param name="index">스프라이트 인덱스 (0-19)</param>
+    /// <returns>해당 인덱스의 스프라이트</returns>
+    public Sprite GetCatSprite(int index)
+    {
+        Debug.Log($"GetCatSprite 호출: index={index}, 배열길이={catSprites.Length}");
+        
+        if (index >= 0 && index < catSprites.Length)
+        {
+            Sprite sprite = catSprites[index];
+            Debug.Log($"인덱스 {index} 스프라이트: {(sprite != null ? sprite.name : "NULL")}");
+            
+            if (sprite != null)
+            {
+                return sprite;
+            }
+        }
+        
+        // 기본값 반환
+        Sprite defaultSprite = catSprites.Length > 0 ? catSprites[0] : null;
+        Debug.Log($"기본 스프라이트 반환: {(defaultSprite != null ? defaultSprite.name : "NULL")}");
+        return defaultSprite;
+    }
+
+    /// <summary>
+    /// 인덱스에 해당하는 잠자는 스프라이트를 가져옵니다
+    /// </summary>
+    /// <param name="index">스프라이트 인덱스 (0-19)</param>
+    /// <returns>해당 인덱스의 잠자는 스프라이트</returns>
+    public Sprite GetCatSprite_Sleep(int index)
+    {
+        if (index >= 0 && index < catSprites_Sleep.Length && catSprites_Sleep[index] != null)
+        {
+            return catSprites_Sleep[index];
+        }
+        return catSprites_Sleep[0]; // 기본값 반환
+    }
+
+    /// <summary>
+    /// 인덱스에 해당하는 달리는 스프라이트를 가져옵니다
+    /// </summary>
+    /// <param name="index">스프라이트 인덱스 (0-19)</param>
+    /// <returns>해당 인덱스의 달리는 스프라이트</returns>
+    public Sprite GetCatSprite_Run(int index)
+    {
+        if (index >= 0 && index < catSprites_Run.Length && catSprites_Run[index] != null)
+        {
+            return catSprites_Run[index];
+        }
+        return catSprites_Run[0]; // 기본값 반환
+    }
+
+    /// <summary>
+    /// 고양이 인덱스를 설정합니다
+    /// </summary>
+    /// <param name="index">설정할 인덱스 (0-19)</param>
+    public void SetCatIndex(int index)
+    {
+        catIndex = Mathf.Clamp(index, 0, 19);
+    }
+
+    /// <summary>
+    /// 랜덤 스탯 변동을 적용한 새로운 CatStats를 생성합니다 (-20% ~ +20%)
+    /// </summary>
+    /// <returns>랜덤 변동이 적용된 CatStats</returns>
+    public CatStats CreateRandomizedStats()
+    {
+        CatStats randomizedStats = CreateInstance<CatStats>();
+        
+        // 기본 정보 복사
+        randomizedStats.catName = this.catName;
+        randomizedStats.catIndex = this.catIndex;
+        randomizedStats.catSprites = this.catSprites;
+        randomizedStats.catSprites_Sleep = this.catSprites_Sleep;
+        randomizedStats.catSprites_Run = this.catSprites_Run;
+        randomizedStats.description = this.description;
+        
+        // 각 스탯에 대해 -20% ~ +20% 랜덤 변동 적용
+        float speedVariation = Random.Range(-0.2f, 0.2f);
+        float accelerationVariation = Random.Range(-0.2f, 0.2f);
+        float healthVariation = Random.Range(-0.2f, 0.2f);
+        float intelligenceVariation = Random.Range(-0.2f, 0.2f);
+        float strengthVariation = Random.Range(-0.2f, 0.2f);
+        
+        // 변동된 스탯 적용
+        randomizedStats.speed = Mathf.Clamp(speed * (1f + speedVariation), 1f, 20f);
+        randomizedStats.acceleration = Mathf.Clamp(acceleration * (1f + accelerationVariation), 1f, 20f);
+        randomizedStats.health = Mathf.Clamp(Mathf.RoundToInt(health * (1f + healthVariation)), 1, 100);
+        randomizedStats.intelligence = Mathf.Clamp(Mathf.RoundToInt(intelligence * (1f + intelligenceVariation)), 1, 100);
+        randomizedStats.strength = Mathf.Clamp(Mathf.RoundToInt(strength * (1f + strengthVariation)), 1, 100);
+        
+        Debug.Log($"{catName} 랜덤 스탯 변동 적용: 속도({speedVariation:P1}) 가속도({accelerationVariation:P1}) 체력({healthVariation:P1}) 지능({intelligenceVariation:P1}) 힘({strengthVariation:P1})");
+        
+        return randomizedStats;
     }
 
     /// <summary>

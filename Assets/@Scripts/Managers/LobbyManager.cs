@@ -5,8 +5,9 @@ using System;
 /// <summary>
 /// 로비씬의 3페이즈 시스템을 관리하는 매니저 (성능 최적화 버전)
 /// 페이즈 0: 고양이 선택, 페이즈 1: 스탯 강화, 페이즈 2: 부적 선택
+/// 싱글톤 패턴으로 구현
 /// </summary>
-public class LobbyManager : MonoBehaviour
+public class LobbyManager : Singleton<LobbyManager>
 {
     #region Serialized Fields
     [Header("패널 참조")]
@@ -32,8 +33,6 @@ public class LobbyManager : MonoBehaviour
     #endregion
 
     #region Public Properties
-    public static LobbyManager Instance { get; private set; }
-    
     public CatStats SelectedCat 
     { 
         get 
@@ -59,18 +58,10 @@ public class LobbyManager : MonoBehaviour
     #endregion
 
     #region Unity Lifecycle
-    private void Awake()
+    protected override void InitializeSingleton()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-            InitializeCache();
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        base.InitializeSingleton();
+        InitializeCache();
     }
 
     private void Start()
@@ -81,13 +72,15 @@ public class LobbyManager : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
         // 이벤트 구독 해제
         OnPhaseChanged = null;
         OnCatSelectionChanged = null;
         OnStatEnhancementChanged = null;
         OnCharmSelectionChanged = null;
+        
+        base.OnDestroy();
     }
     #endregion
 

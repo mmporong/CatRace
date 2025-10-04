@@ -6,8 +6,9 @@ using UnityEngine;
 /// <summary>
 /// 레이스 라이프사이클을 관리하는 매니저
 /// PreRace -> Countdown -> Racing -> Finished -> PostRace
+/// 싱글톤 패턴으로 구현
 /// </summary>
-public class RaceManager : MonoBehaviour
+public class RaceManager : Singleton<RaceManager>
 {
     public enum RaceState
     {
@@ -45,7 +46,19 @@ public class RaceManager : MonoBehaviour
 
     private Coroutine countdownRoutine;
 
-    private void Awake()
+    protected override void InitializeSingleton()
+    {
+        base.InitializeSingleton();
+    }
+
+    private void Start()
+    {
+        InitializeRaceComponents();
+        PrepareRace();
+        StartCountdown();
+    }
+
+    private void InitializeRaceComponents()
     {
         if (trackManager == null)
         {
@@ -55,11 +68,6 @@ public class RaceManager : MonoBehaviour
         {
             racers.AddRange(FindObjectsByType<CatAI>(FindObjectsInactive.Exclude, FindObjectsSortMode.None));
         }
-    }
-    private void Start()
-    {
-        PrepareRace();
-        StartCountdown();
     }
     private void Update()
     {
@@ -94,6 +102,13 @@ public class RaceManager : MonoBehaviour
             {
                 move.Stop();
                 move.ApplyStats();
+            }
+
+            // 게임 시작 시 Idle 애니메이션 트리거
+            var cat = ai.GetComponent<Cat>();
+            if (cat != null)
+            {
+                cat.StartIdle();
             }
 
             // AI 입력 잠금(Countdown까지)
@@ -155,12 +170,20 @@ public class RaceManager : MonoBehaviour
         if (currentState == RaceState.Finished) return;
         currentState = RaceState.Finished;
 
-        // 이동 잠금
+        // 이동 잠금 및 게임 종료 시 Idle 애니메이션 트리거
         foreach (var ai in racers)
         {
             if (ai == null) continue;
             var move = ai.GetComponent<CatMovement>();
             if (move != null) move.Stop();
+            
+            // 게임 종료 시 Idle 애니메이션 트리거
+            var cat = ai.GetComponent<Cat>();
+            if (cat != null)
+            {
+                cat.StartIdle();
+            }
+            
             ai.enabled = false;
         }
 

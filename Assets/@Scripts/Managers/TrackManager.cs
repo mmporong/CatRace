@@ -3,8 +3,9 @@ using System.Collections.Generic;
 
 /// <summary>
 /// 트랙을 관리하는 메인 시스템
+/// 싱글톤 패턴으로 구현
 /// </summary>
-public class TrackManager : MonoBehaviour
+public class TrackManager : Singleton<TrackManager>
 {
     [Header("트랙 설정")]
     [SerializeField] private float trackWidth = 10f; // 트랙 너비
@@ -22,10 +23,11 @@ public class TrackManager : MonoBehaviour
     public int NumberOfPoints => trackPoints != null ? trackPoints.Length : 0;
 
     /// <summary>
-    /// 트랙 초기화
+    /// 싱글톤 초기화
     /// </summary>
-    private void Awake()
+    protected override void InitializeSingleton()
     {
+        base.InitializeSingleton();
         InitializeTrack();
     }
 

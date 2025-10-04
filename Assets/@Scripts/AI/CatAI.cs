@@ -233,6 +233,12 @@ public class CatAI : MonoBehaviour
             catCollider.enabled = false;
         }
 
+        // 체력이 0이 되면 Sleep 애니메이션 트리거
+        if (cat != null && cat.CurrentHealth <= 0)
+        {
+            cat.StartSleeping();
+        }
+
         // 체력이 50% 이상 회복되면 Moving 상태로 전환
         float healthPercentage = (float)cat.CurrentHealth / cat.CatStats.Health;
         if (healthPercentage >= 0.5f)
@@ -249,7 +255,12 @@ public class CatAI : MonoBehaviour
                 catCollider.enabled = true;
             }
             
-            Debug.Log($"{cat.CatStats.CatName} 체력이 회복되어 다시 이동을 시작합니다!");
+            // 체력 회복 시 Run 애니메이션 다시 실행
+            if (cat != null)
+            {
+                cat.StartRunning();
+            }
+            
         }
     }
 
@@ -308,7 +319,7 @@ public class CatAI : MonoBehaviour
             currentTrackPointIndex = (currentTrackPointIndex + 1) % trackManager.TrackPoints.Length;
             targetTrackPoint = trackManager.TrackPoints[currentTrackPointIndex];
             
-            Debug.Log($"{gameObject.name}: 트랙 포인트 {currentTrackPointIndex}로 이동 (지능 보너스: {adjustedReachDistance:F1})");
+            // Debug.Log($"{gameObject.name}: 트랙 포인트 {currentTrackPointIndex}로 이동 (지능 보너스: {adjustedReachDistance:F1})");
         }
 
         // 목표 트랙 포인트의 원형 범위 내에서 랜덤 위치 선택

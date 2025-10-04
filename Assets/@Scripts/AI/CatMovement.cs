@@ -33,6 +33,7 @@ public class CatMovement : MonoBehaviour
     [SerializeField] private Vector3 targetDirection; // 목표 방향
     [SerializeField] private Vector3 currentVelocity; // 현재 속도
     [SerializeField] private bool isMoving = false; // 이동 중인지 여부
+    [SerializeField] private bool hasTriggeredRunAnimation = false; // Run 애니메이션 트리거 여부
 
     // 부드러운 이동을 위한 변수들
     private Vector3 velocitySmoothing;
@@ -110,7 +111,21 @@ public class CatMovement : MonoBehaviour
         currentVelocity = rb.linearVelocity;
 
         // 이동 중인지 확인
+        bool wasMoving = isMoving;
         isMoving = currentVelocity.magnitude > 0.1f;
+
+        // 이동 시작 시 Run 애니메이션 트리거 (한 번만)
+        if (!wasMoving && isMoving && cat != null && !hasTriggeredRunAnimation)
+        {
+            cat.StartRunning();
+            hasTriggeredRunAnimation = true;
+        }
+        
+        // 정지 시 트리거 리셋
+        if (wasMoving && !isMoving)
+        {
+            hasTriggeredRunAnimation = false;
+        }
 
         // 고양이 방향 회전 및 플립
         if (currentVelocity.magnitude > 0.1f)
@@ -176,6 +191,10 @@ public class CatMovement : MonoBehaviour
                     {
                         cat.SetStat(StatType.Speed, originalMoveSpeed);
                         isExhausted = false;
+                        
+                        // 체력이 완전히 회복되면 Run 애니메이션 실행
+                        cat.StartRunning();
+                        
                         Debug.Log($"{cat.CatStats.CatName} 체력이 회복되어 원래 속도로 돌아갑니다!");
                     }
                 }
@@ -236,23 +255,27 @@ public class CatMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// 이동 방향에 따라 고양이를 좌우로 플립합니다
+    /// 이동 방향에 따라 고양이를 좌우로 회전합니다 (Y축 180도 회전)
     /// </summary>
     /// <param name="direction">이동 방향</param>
     private void FlipTowardsDirection(Vector3 direction)
     {
         if (direction.magnitude < 0.1f) return;
 
-        // X 방향에 따라 스케일을 조정하여 좌우 플립
+        // Model 자식 오브젝트 찾기
+        Transform modelTransform = transform.Find("Model");
+        if (modelTransform == null) return;
+
+        // X 방향에 따라 Y축 회전으로 좌우 전환
         if (direction.x > 0.1f)
         {
-            // 오른쪽으로 이동 - 정상 방향 (스케일 X = 1)
-            GetComponent<SpriteRenderer>().flipX = false;
+            // 오른쪽으로 이동 - 정상 방향 (Y = 0도)
+            modelTransform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
         else if (direction.x < -0.1f)
         {
-            // 왼쪽으로 이동 - 뒤집기 (스케일 X = -1)
-            GetComponent<SpriteRenderer>().flipX = true;
+            // 왼쪽으로 이동 - 180도 회전 (Y = 180도)
+            modelTransform.rotation = Quaternion.Euler(0f, 180f, 0f);
         }
     }
 
@@ -269,6 +292,7 @@ public class CatMovement : MonoBehaviour
 
         isMoving = false;
         targetDirection = Vector3.zero;
+        hasTriggeredRunAnimation = false; // 트리거 리셋
     }
 
     /// <summary>

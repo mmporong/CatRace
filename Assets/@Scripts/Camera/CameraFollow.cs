@@ -8,6 +8,6 @@ public class CameraFollow : MonoBehaviour
 {
     private void Start()
     {
-       DOTween.To(() => GetComponent<Camera>().orthographicSize, x => GetComponent<Camera>().orthographicSize = x, 8, 1);
+    //    DOTween.To(() => GetComponent<Camera>().orthographicSize, x => GetComponent<Camera>().orthographicSize = x, 8, 1);
     }
 }
