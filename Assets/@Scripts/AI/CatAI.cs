@@ -125,7 +125,8 @@ public class CatAI : MonoBehaviour
         Vector3 avoidance = CheckAvoidance();
         
         // 5. 최종 이동 방향 결정 (추월 벡터 가중 적용)
-        Vector3 finalDirection = CalculateFinalDirection(targetPosition, avoidance + overtakeVector * 0.8f);
+        // Vector3 finalDirection = CalculateFinalDirection(targetPosition, avoidance + overtakeVector * 0.8f);
+        Vector3 finalDirection = CalculateFinalDirection(targetPosition, avoidance);
         
         // 6. 이동 실행
         if (movement != null)
@@ -297,15 +298,17 @@ public class CatAI : MonoBehaviour
             return transform.position;
         }
 
-        // 현재 목표 트랙 포인트에 도달했는지 확인
+        // 현재 목표 트랙 포인트에 도달했는지 확인 (지능에 따라 도달 거리 조정)
+        float intelligenceMultiplier = cat != null ? cat.CurrentIntelligence / 100f : 0.5f; // 0.01 ~ 1.0
+        float adjustedReachDistance = trackPointReachDistance * (0.5f + intelligenceMultiplier * 0.5f); // 0.5 ~ 1.0 배
         float distanceToTarget = Vector3.Distance(transform.position, targetTrackPoint.CenterPosition);
-        if (distanceToTarget <= trackPointReachDistance)
+        if (distanceToTarget <= adjustedReachDistance)
         {
             // 다음 트랙 포인트로 이동
             currentTrackPointIndex = (currentTrackPointIndex + 1) % trackManager.TrackPoints.Length;
             targetTrackPoint = trackManager.TrackPoints[currentTrackPointIndex];
             
-            Debug.Log($"{gameObject.name}: 트랙 포인트 {currentTrackPointIndex}로 이동");
+            Debug.Log($"{gameObject.name}: 트랙 포인트 {currentTrackPointIndex}로 이동 (지능 보너스: {adjustedReachDistance:F1})");
         }
 
         // 목표 트랙 포인트의 원형 범위 내에서 랜덤 위치 선택
